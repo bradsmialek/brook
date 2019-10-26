@@ -8,34 +8,58 @@
 //methods makes html elements
   //populate elements with new uncorn data
 
+// holds all my unicorn instances
+var allUnicorns = [];
 
-function Unicorn(name, color, food) {
+// constructor function to make my unicorns
+function Unicorn(name, color, food, location) {
 
-  this.name= name;
-  this.color= color;
-  this.food= food;
+  this.name = name;
+  this.color = color;
+  this.food = food;
+  this.location = location; // will need to use and change
 
+  //render method creates all elements dynamically and appends to html
   this.render = function() {
 
+    var div = document.createElement('div') // create to style like a card
+    div.className = 'card'
     var ul = document.createElement('ul')
-    var li = document.createElement('li');
-    li.textContent = (this.name);
-    ul.appendChild(li);
-    var sec = document.getElementById('barn');
-    sec.appendChild(ul);
+    var liName = document.createElement('li');
+    var liColor = document.createElement('li');
+    var liFood = document.createElement('li');
+    
+    liName.textContent = `Name: ${this.name}`;
+    liColor.textContent = `Color: ${this.color}`;      
+    liFood.textContent = `Favorite Food: ${this.food}`           
+
+    ul.appendChild(liName);
+    liName.append(liColor);
+    liName.append(liFood);
+    
+    var sec = document.getElementById(this.location);
+    div.append(ul);
+    sec.appendChild(div);
     
   }
-
+  allUnicorns.push(this);
 };
 
-var unicornOne = new Unicorn('henry', 'blue', 'corn');
-var unicornTwo = new Unicorn('john', 'orange', 'apples');
-var unicornThree = new Unicorn('susan', 'green','grapes');
-var unicornFour = new Unicorn('jacky', 'red', 'bananas');
 
-// console.log(unicornOne);
+// calling constructor and storing new instance in variable 
+var unicornOne = new Unicorn('henry', 'blue', 'corn', 'barn');
+var unicornTwo = new Unicorn('john', 'orange', 'apples', 'barn');
+var unicornThree = new Unicorn('susan', 'green','grapes', 'barn');
+var unicornFour = new Unicorn('jacky', 'red', 'bananas', 'barn');
 
+console.log(unicornOne);
+console.log(allUnicorns)
+
+// calling render method on instance to show unicorns
 unicornOne.render();
+unicornTwo.render();
+unicornThree.render();
+unicornFour.render();
 
 
 //maybe buttons as options
