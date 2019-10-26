@@ -1,8 +1,8 @@
 'use strict';
 
-
 // holds all my unicorn instances
 var allUnicorns = [];
+checkLocalStorage();
 
 // constructor function to make my unicorns
 function Unicorn(name, color, food, location) {
@@ -81,49 +81,60 @@ function Unicorn(name, color, food, location) {
   allUnicorns.push(this);
 };
 
-// calling constructor and storing new instance in variable 
-var unicornOne = new Unicorn('Henry', 'blue', 'corn', 'barn');
-var unicornTwo = new Unicorn('John', 'orange', 'apples', 'barn');
-var unicornThree = new Unicorn('Susan', 'green','grapes', 'barn');
-var unicornFour = new Unicorn('Jacky', 'red', 'bananas', 'barn');
-var unicornFive = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
-var unicornSix = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
-var unicornSeven = new Unicorn('Smack', 'green','carrots', 'barn');
-var unicornEight = new Unicorn('Jock', 'black', 'mud', 'barn');
-var unicornNine = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
-var unicornTen = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
-var unicornEleven = new Unicorn('Peaches', 'green','carrots', 'barn');
-var unicornTwelve = new Unicorn('Rocky', 'black', 'mud', 'barn');
+var unicornOne;
+var unicornTwo;
+var unicornThree;
+var unicornFour;
+var unicornFive;
+var unicornSix;
+var unicornSeven;
+var unicornEight;
+var unicornNine;
+var unicornTen;
+var unicornEleven;
+var unicornTwelve;
 
-console.log(unicornOne);
-console.log(allUnicorns)
+// calling constructor and storing new instance in variable 
+function makeUnicorns(){
+  unicornOne = new Unicorn('Henry', 'blue', 'corn', 'barn');
+  unicornTwo = new Unicorn('John', 'orange', 'apples', 'barn');
+  unicornThree = new Unicorn('Susan', 'green','grapes', 'barn');
+  unicornFour = new Unicorn('Jacky', 'red', 'bananas', 'barn');
+  unicornFive = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+  unicornSix = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+  unicornSeven = new Unicorn('Smack', 'green','carrots', 'barn');
+  unicornEight = new Unicorn('Jock', 'black', 'mud', 'barn');
+  unicornNine = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+  unicornTen = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+  unicornEleven = new Unicorn('Peaches', 'green','carrots', 'barn');
+  unicornTwelve = new Unicorn('Rocky', 'black', 'mud', 'barn');
+}
 
 // calling render method on instance to show unicorns
-unicornOne.render();
-unicornTwo.render();
-unicornThree.render();
-unicornFour.render();
-unicornFive.render();
-unicornSix.render();
-unicornSeven.render();
-unicornEight.render();
-unicornNine.render();
-unicornTen.render();
-unicornEleven.render();
-unicornTwelve.render();
+function renderCall() {
+  unicornOne.render();
+  unicornTwo.render();
+  unicornThree.render();
+  unicornFour.render();
+  unicornFive.render();
+  unicornSix.render();
+  unicornSeven.render();
+  unicornEight.render();
+  unicornNine.render();
+  unicornTen.render();
+  unicornEleven.render();
+  unicornTwelve.render();
+}
 
 
 // event handler if pasture button is clicked.  changes location and rerenders 
 function goToPasture(event) {
 
-  console.log('pasture')
-  console.log(event.target)
   var id = event.target.id;
   for ( var i = 0; i < allUnicorns.length; i++) {
     if( id === allUnicorns[i].name) {
       deleteDiv(event);
       allUnicorns[i].location = 'pasture';
-      console.log(allUnicorns)
       storeUnicorns(allUnicorns);
       allUnicorns[i].render();
     }
@@ -132,18 +143,13 @@ function goToPasture(event) {
 
 function goToTrail(event) {
 
-  console.log('trail')
-  console.log(event.target.id);
   var id = event.target.id;
-
   for ( var i = 0; i < allUnicorns.length; i++) {
     if( id === allUnicorns[i].name) {
       deleteDiv(event);
       allUnicorns[i].location = 'trail';
-      console.log(allUnicorns)
       storeUnicorns(allUnicorns);
       allUnicorns[i].render();
-      
     }
   }
 }
@@ -154,7 +160,6 @@ function goToBarn(event) {
     if( id === allUnicorns[i].name) {
       deleteDiv(event);
       allUnicorns[i].location = 'barn';
-      console.log(allUnicorns)
       storeUnicorns(allUnicorns);
       allUnicorns[i].render();
     }
@@ -170,18 +175,27 @@ function deleteDiv(event) {
 
 //persistance
 function storeUnicorns(unicorns){
-  console.log('unicorns',unicorns)
   localStorage.setItem('allUnicorns', JSON.stringify(unicorns));
 }
 
 function checkLocalStorage(){
   var unicornStorage = localStorage.getItem('allUnicorns');
-  console.log(unicornStorage)
   var parsed = JSON.parse(unicornStorage);
-  console.log(parsed)
 
+  if (parsed === null) {
+    makeUnicorns();
+    renderCall();
+  }else{
+    for(var i = 0; i < parsed.length; i++){
+      var name = parsed[i].name;
+      var color = parsed[i].color;
+      var food = parsed[i].food;
+      var location = parsed[i].location;
+      var stored = new Unicorn(name, color, food, location);
+      stored.render();
+    }
+  }
 }
 
-checkLocalStorage();
 
 // stretch  db  talk to db  deply with links
