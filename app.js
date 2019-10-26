@@ -124,6 +124,7 @@ function goToPasture(event) {
       deleteDiv(event);
       allUnicorns[i].location = 'pasture';
       console.log(allUnicorns)
+      storeUnicorns(allUnicorns);
       allUnicorns[i].render();
     }
   }
@@ -140,6 +141,7 @@ function goToTrail(event) {
       deleteDiv(event);
       allUnicorns[i].location = 'trail';
       console.log(allUnicorns)
+      storeUnicorns(allUnicorns);
       allUnicorns[i].render();
       
     }
@@ -153,6 +155,7 @@ function goToBarn(event) {
       deleteDiv(event);
       allUnicorns[i].location = 'barn';
       console.log(allUnicorns)
+      storeUnicorns(allUnicorns);
       allUnicorns[i].render();
     }
   }
@@ -160,13 +163,25 @@ function goToBarn(event) {
 
 // delete duplicates
 function deleteDiv(event) { 
-
-  console.log(event.target.parentNode.parentNode)
   var byeDiv = event.target.parentNode.parentNode
   byeDiv.remove();
   return;
 }
 
 //persistance
+function storeUnicorns(unicorns){
+  console.log('unicorns',unicorns)
+  localStorage.setItem('allUnicorns', JSON.stringify(unicorns));
+}
+
+function checkLocalStorage(){
+  var unicornStorage = localStorage.getItem('allUnicorns');
+  console.log(unicornStorage)
+  var parsed = JSON.parse(unicornStorage);
+  console.log(parsed)
+
+}
+
+checkLocalStorage();
 
 // stretch  db  talk to db  deply with links
