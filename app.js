@@ -82,10 +82,18 @@ function Unicorn(name, color, food, location) {
 };
 
 // calling constructor and storing new instance in variable 
-var unicornOne = new Unicorn('henry', 'blue', 'corn', 'barn');
-var unicornTwo = new Unicorn('john', 'orange', 'apples', 'pasture');
-var unicornThree = new Unicorn('susan', 'green','grapes', 'trail');
-var unicornFour = new Unicorn('jacky', 'red', 'bananas', 'barn');
+var unicornOne = new Unicorn('Henry', 'blue', 'corn', 'barn');
+var unicornTwo = new Unicorn('John', 'orange', 'apples', 'barn');
+var unicornThree = new Unicorn('Susan', 'green','grapes', 'barn');
+var unicornFour = new Unicorn('Jacky', 'red', 'bananas', 'barn');
+var unicornFive = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+var unicornSix = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+var unicornSeven = new Unicorn('Smack', 'green','carrots', 'barn');
+var unicornEight = new Unicorn('Jock', 'black', 'mud', 'barn');
+var unicornNine = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+var unicornTen = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+var unicornEleven = new Unicorn('Peaches', 'green','carrots', 'barn');
+var unicornTwelve = new Unicorn('Rocky', 'black', 'mud', 'barn');
 
 console.log(unicornOne);
 console.log(allUnicorns)
@@ -95,6 +103,14 @@ unicornOne.render();
 unicornTwo.render();
 unicornThree.render();
 unicornFour.render();
+unicornFive.render();
+unicornSix.render();
+unicornSeven.render();
+unicornEight.render();
+unicornNine.render();
+unicornTen.render();
+unicornEleven.render();
+unicornTwelve.render();
 
 
 // event handler if pasture button is clicked.  changes location and rerenders 
@@ -152,5 +168,5 @@ function deleteDiv(event) {
 }
 
 //persistance
-//css
+
 // stretch  db  talk to db  deply with links
