@@ -1,12 +1,5 @@
 'use strict';
 
-//create var that instantiate new unicorns with data
-
-//constructor function  createUnicorn
-  //variables to deconstruct data
-
-//methods makes html elements
-  //populate elements with new uncorn data
 
 // holds all my unicorn instances
 var allUnicorns = [];
@@ -17,12 +10,12 @@ function Unicorn(name, color, food, location) {
   this.name = name;
   this.color = color;
   this.food = food;
-  this.location = location; // will need to use and change
+  this.location = location; 
 
   //render method creates all elements dynamically and appends to html
   this.render = function() {
 
-    var div = document.createElement('div') // create to style like a card
+    var div = document.createElement('div') 
     div.className = 'card'
     var ul = document.createElement('ul')
     var liName = document.createElement('li');
@@ -46,13 +39,13 @@ function Unicorn(name, color, food, location) {
       var pasture = document.createElement('button');
       pasture.id = this.name;
       pasture.textContent = 'Take to Pasture';
-      pasture.addEventListener('click', goToPasture); //need function
+      pasture.addEventListener('click', goToPasture); 
       ul.appendChild(pasture);
 
       var trail = document.createElement('button');
       trail.id = this.name;
       trail.textContent = 'Take on Trail';
-      trail.addEventListener('click', goToTrail); //need function
+      trail.addEventListener('click', goToTrail); 
       ul.appendChild(trail);
 
     }else if (this.location === 'pasture'){
@@ -60,7 +53,7 @@ function Unicorn(name, color, food, location) {
       var barn = document.createElement('button');
       barn.id = this.name;
       barn.textContent = 'Take to Barn';
-      barn.addEventListener('click', goToBarn); //need function
+      barn.addEventListener('click', goToBarn); 
       ul.appendChild(barn);
 
       var trail = document.createElement('button');
@@ -88,12 +81,19 @@ function Unicorn(name, color, food, location) {
   allUnicorns.push(this);
 };
 
-
 // calling constructor and storing new instance in variable 
-var unicornOne = new Unicorn('henry', 'blue', 'corn', 'barn');
-var unicornTwo = new Unicorn('john', 'orange', 'apples', 'pasture');
-var unicornThree = new Unicorn('susan', 'green','grapes', 'trail');
-var unicornFour = new Unicorn('jacky', 'red', 'bananas', 'barn');
+var unicornOne = new Unicorn('Henry', 'blue', 'corn', 'barn');
+var unicornTwo = new Unicorn('John', 'orange', 'apples', 'barn');
+var unicornThree = new Unicorn('Susan', 'green','grapes', 'barn');
+var unicornFour = new Unicorn('Jacky', 'red', 'bananas', 'barn');
+var unicornFive = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+var unicornSix = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+var unicornSeven = new Unicorn('Smack', 'green','carrots', 'barn');
+var unicornEight = new Unicorn('Jock', 'black', 'mud', 'barn');
+var unicornNine = new Unicorn('Jinx', 'rainbow', 'bugs', 'barn');
+var unicornTen = new Unicorn('Rainbow', 'orange', 'figs', 'barn');
+var unicornEleven = new Unicorn('Peaches', 'green','carrots', 'barn');
+var unicornTwelve = new Unicorn('Rocky', 'black', 'mud', 'barn');
 
 console.log(unicornOne);
 console.log(allUnicorns)
@@ -103,14 +103,15 @@ unicornOne.render();
 unicornTwo.render();
 unicornThree.render();
 unicornFour.render();
+unicornFive.render();
+unicornSix.render();
+unicornSeven.render();
+unicornEight.render();
+unicornNine.render();
+unicornTen.render();
+unicornEleven.render();
+unicornTwelve.render();
 
-
-//maybe buttons as options
-
-// render all unicorn
-//persistance
-//css
-// stretch  db  talk to db  deply with links
 
 // event handler if pasture button is clicked.  changes location and rerenders 
 function goToPasture(event) {
@@ -120,7 +121,7 @@ function goToPasture(event) {
   var id = event.target.id;
   for ( var i = 0; i < allUnicorns.length; i++) {
     if( id === allUnicorns[i].name) {
-    
+      deleteDiv(event);
       allUnicorns[i].location = 'pasture';
       console.log(allUnicorns)
       allUnicorns[i].render();
@@ -136,7 +137,7 @@ function goToTrail(event) {
 
   for ( var i = 0; i < allUnicorns.length; i++) {
     if( id === allUnicorns[i].name) {
-      
+      deleteDiv(event);
       allUnicorns[i].location = 'trail';
       console.log(allUnicorns)
       allUnicorns[i].render();
@@ -149,10 +150,23 @@ function goToBarn(event) {
   var id = event.target.id;
   for ( var i = 0; i < allUnicorns.length; i++) {
     if( id === allUnicorns[i].name) {
-  
+      deleteDiv(event);
       allUnicorns[i].location = 'barn';
       console.log(allUnicorns)
       allUnicorns[i].render();
     }
   }
 }
+
+// delete duplicates
+function deleteDiv(event) { 
+
+  console.log(event.target.parentNode.parentNode)
+  var byeDiv = event.target.parentNode.parentNode
+  byeDiv.remove();
+  return;
+}
+
+//persistance
+
+// stretch  db  talk to db  deply with links

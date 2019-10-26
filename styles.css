@@ -1,0 +1,48 @@
+#pasture {
+  background: rgb(85, 196, 177);
+}
+
+#trail{
+  background: rgb(85, 196, 177);
+}
+
+#barn{
+  background: rgb(85, 196, 177);
+}
+
+.card{
+  background: #3fa38f;
+  border-style: outset;
+  margin-bottom: 10px;
+}
+
+.header {
+  
+  padding: 30px;
+  text-align: center;
+  background: #3fa38f;
+  color: white;
+  font-size: 30px;
+}
+
+
+#contain {
+  display: flex;
+  width: 100%;
+}
+
+#contain > section {
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px; 
+}
+
+li {
+  list-style-type: none;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+}
